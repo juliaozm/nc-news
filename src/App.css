@@ -30,6 +30,10 @@ a, a:visited {
   color: #000;
 }
 
+button {
+  cursor: pointer;
+}
+
 .container {
   max-width: 1200px;
   width: 100%;
@@ -94,22 +98,39 @@ a, a:visited {
   height: 150px;
 }
 
-.article-item .date,
-.article-item .comment span {
+.article-item .date {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.2;
 }
 
-.article-item .comment {
+.article-item .stats-block {
   display: flex;
+  justify-content: flex-start;
   align-items: center;
-  margin-top: 15px;
 }
 
-.article-item .comment span {
-  margin-left: 5px;
+.article-item .stats-block p {
+  display: flex;
+  align-items: center;
+  margin: 15px 10px 5px 0px;
 }
+
+.article-item .stats-block .comment {
+  margin-left: 10px;
+}
+
+.article-item .stats-block .comment svg {
+  margin-top: 3px;
+}
+
+.article-item .stats-block span {
+  margin-left: 5px;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
 
 /* Single Article Page */
 .read-article,
@@ -198,25 +219,55 @@ a, a:visited {
   line-height: 1.5;
 }
 
-.comment-item .vote {
+.comment-item .vote,
+.read-article .vote {
   display: flex;
   align-items: center;
   margin-top: 10px;
 }
 
-.comment-item .vote button{
+.read-article .vote {
+  margin-top: 16px;
+}
+
+.comment-item .vote button,
+.read-article .vote button {
   display: flex;
   padding: 5px;
   margin-right: 10px;
   background-color: white;
-  border: 1px solid #000;
+  border: 1px solid rgb(138, 135, 135);
 }
 
-.comment-item .vote span {
-  font-size: 0.9rem;
-  margin-left: 8px;
-  font-weight: 500;
+.read-article .vote button {
+  margin-right: 16px;
+  padding: 0;
 }
+
+.read-article .vote button span {
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 12px 12px;
+}
+
+.read-article .vote button svg {
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.like-active {
+  border: 1px solid #0e8542;
+  color: rgb(43, 144, 43);
+}
+ 
+.dislike-active {
+  border: 1px solid #FF0063;
+  color: #FF0063;
+}
+
 
 .comment-item .vote .green {
   color: rgb(43, 144, 43);
