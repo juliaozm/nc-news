@@ -5,5 +5,9 @@ const myApi = axios.create({
 });
 
 export const getArticlesList = () => {
-    return myApi.get(`/articles`)
+  return myApi.get(`/articles`)
+}
+
+export const getArticle = (article_id) => {
+  return myApi.get(`/articles/${article_id}`)
 }
