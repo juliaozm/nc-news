@@ -1,5 +1,5 @@
 export const ReadingSection = ({article}) => {
-    const date = new Date(Date.parse(article.created_at)).toLocaleString()
+    const date = new Date(Date.parse(article.created_at)).toLocaleString('en-GB', { timeZone: 'UTC'})
     return (
         <article className="read-article">
             <span>{date}</span>
