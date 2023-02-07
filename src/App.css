@@ -160,6 +160,11 @@ a, a:visited {
   color: #000;
 }
 
+.comment-article {
+  position: relative;
+  min-height: 300px;
+}
+
 .comment-article h2 {
   font-size: 1.5rem;
   font-weight: 700;
@@ -193,30 +198,31 @@ a, a:visited {
   line-height: 1.5;
 }
 
-.comment-item .upvote {
+.comment-item .vote {
   display: flex;
   align-items: center;
   margin-top: 10px;
 }
 
-.comment-item .upvote button{
-  padding: 3px 5px;
-  margin-right: 5px;
+.comment-item .vote button{
+  display: flex;
+  padding: 5px;
+  margin-right: 10px;
   background-color: white;
   border: 1px solid #000;
 }
 
-.comment-item .upvote span {
+.comment-item .vote span {
   font-size: 0.9rem;
   margin-left: 8px;
   font-weight: 500;
 }
 
-.comment-item .upvote .green {
+.comment-item .vote .green {
   color: rgb(43, 144, 43);
 }
 
-.comment-item .upvote .red {
+.comment-item .vote .red {
   color: rgb(175, 37, 58);
 }
 

@@ -17,8 +17,8 @@ export const SingleArticlePage = () => {
         Promise.all([getArticle(article_id), getComments(article_id)])
         .then(([articleFromAPI, commentsFromApi]) => {
            setArticle(articleFromAPI.data.article)
-           setComments(commentsFromApi.data.comments)
            setLoading(false)
+           setComments(commentsFromApi.data.comments)
         })
     }, [article_id]);
 
