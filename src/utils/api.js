@@ -19,3 +19,7 @@ export const getComments = (article_id) => {
 export const updateArticleVotes = (article_id, data) => {
   return myApi.patch(`/articles/${article_id}`, data)
 }
+
+export const postNewComment = (article_id, comment) => {
+  return myApi.post(`/articles/${article_id}/comments`, comment)
+}

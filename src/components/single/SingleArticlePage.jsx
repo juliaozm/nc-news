@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { getArticle, getComments, updateArticleVotes } from '../../utils/api';
+import { useParams } from 'react-router-dom';
+import { getArticle, getComments, updateArticleVotes, postNewComment } from '../../utils/api';
 import { ReadingSection } from './ReadingSection';
-import { CommentSection } from './CommentSection';
+import { CommentSection } from './comments/CommentSection';
+import { BackLink } from '../BackLink';
 import { LoadingItem } from '../LoadingItem';
-import { HiArrowLongLeft } from "react-icons/hi2";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,6 +14,7 @@ export const SingleArticlePage = () => {
     const [article, setArticle] = useState({});
     const [comments, setComments] = useState([]);
     const [updatedArticle, setUpdatedArticle] = useState({});
+    const [newComment, setNewComment] = useState({});
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -30,20 +31,31 @@ export const SingleArticlePage = () => {
            updateArticleVotes(article_id, updatedArticle)
            .catch(err => {
             console.log(err)
-            toast.error("Your vote was not counted!")
+            toast.error("Your vote hasn't been counted!")
            })
         }
     }, [updatedArticle])
 
+    useEffect(() => {
+        if (newComment.author && newComment.body) {
+            setComments((currComments) => [newComment, ...currComments]) 
+            postNewComment(article_id, {
+                username: newComment.author,
+                body: newComment.body,
+            })
+            .catch(err => {
+                console.log(err)
+                toast.error("Your comment hasn't been published!")
+            })
+        }
+    }, [newComment])
+
     if (isLoading) return <LoadingItem />
     return (
         <main className='container'>
-            <Link to='/' className="back-link">
-                <HiArrowLongLeft />
-                <span>Back to articles</span>
-            </Link>
+            <BackLink />
             <ReadingSection article={article} setUpdatedArticle={setUpdatedArticle} />
-            <CommentSection comments={comments} />
+            <CommentSection comments={comments} setNewComment={setNewComment} />
             <ToastContainer position="top-right" autoClose={5000} limit={3} />
         </main>
     )
