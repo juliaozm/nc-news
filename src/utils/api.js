@@ -21,5 +21,5 @@ export const updateArticleVotes = (article_id, data) => {
 }
 
 export const postNewComment = (article_id, comment) => {
-  return myApi.post(`/articles/${article_id}/commen`, comment)
+  return myApi.post(`/articles/${article_id}/comments`, comment)
 }

@@ -39,8 +39,6 @@ export const SingleArticlePage = () => {
     useEffect(() => {
         if (newComment.author && newComment.body) {
             setComments((currComments) => [newComment, ...currComments]) 
-            console.log(newComment)
-            console.log(comments, '--before post')
             postNewComment(article_id, {
                 username: newComment.author,
                 body: newComment.body,
@@ -49,7 +47,6 @@ export const SingleArticlePage = () => {
                 setComments((currComments) => [currComments.shift(), ...currComments])
                 console.log(err)
                 toast.error("Your comment hasn't been published!")
-                console.log(comments, '---after error')
             })
         }
     }, [newComment])
