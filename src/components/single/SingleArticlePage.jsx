@@ -44,6 +44,7 @@ export const SingleArticlePage = () => {
                 body: newComment.body,
             })
             .catch(err => {
+                setComments((currComments) => [currComments.shift(), ...currComments])
                 console.log(err)
                 toast.error("Your comment hasn't been published!")
             })
@@ -56,7 +57,7 @@ export const SingleArticlePage = () => {
             <BackLink />
             <ReadingSection article={article} setUpdatedArticle={setUpdatedArticle} />
             <CommentSection comments={comments} setNewComment={setNewComment} />
-            <ToastContainer position="top-right" autoClose={5000} limit={3} />
+            <ToastContainer position="top-right" autoClose={2000} />
         </main>
     )
 }
