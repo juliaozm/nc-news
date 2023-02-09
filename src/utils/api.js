@@ -4,8 +4,8 @@ const myApi = axios.create({
   baseURL: 'https://julia-ozmitel-backend-project.onrender.com/api',
 });
 
-export const getArticlesList = () => {
-  return myApi.get(`/articles`)
+export const getArticlesList = (topic) => {
+  return myApi.get(`/articles/${topic != 'all' ? `?topic=${topic}` : ''}`)
 }
 
 export const getArticle = (article_id) => {
@@ -22,4 +22,8 @@ export const updateArticleVotes = (article_id, data) => {
 
 export const postNewComment = (article_id, comment) => {
   return myApi.post(`/articles/${article_id}/comments`, comment)
+}
+
+export const fetchTopics = () => {
+  return myApi.get(`/topics`)
 }
