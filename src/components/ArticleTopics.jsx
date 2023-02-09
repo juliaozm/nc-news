@@ -4,7 +4,7 @@ export const ArticleTopics = ({topics, setSelectedTopic}) => {
     const [topic, setTopic] = useState('all')
 
     const handleSelect = (e) => {
-        setSelectedTopic(`?topic=${e.target.value}`)
+        setSelectedTopic(`topic=${e.target.value}`)
         setTopic(e.target.value)
     }
     return (
@@ -14,10 +14,10 @@ export const ArticleTopics = ({topics, setSelectedTopic}) => {
             </h1>
             <select 
                 name="selectedTopic" 
-                value={topic}
                 onChange={handleSelect}
+                defaultValue={topic}
             >
-                <option value='all'>all</option>
+                <option key="all" value="all">all</option>
                 {topics.map(topic => {
                     return <option key={topic.slug} value={topic.slug}>{topic.slug}</option>
                 })}

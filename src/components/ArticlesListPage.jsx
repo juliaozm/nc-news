@@ -8,18 +8,18 @@ import { LoadingItem } from './LoadingItem';
 export const ArticlesListPage = () => {
     const [topics, setTopics] = useState([]);
     const [articlesList, setArticlesList] = useState([]);
-    let [selectedTopic, setSelectedTopic] = useSearchParams();
+    let [selectedTopic, setSelectedTopic] = useSearchParams('');
     const [isLoading, setLoading] = useState(true);
     
     let searchByTopic = selectedTopic.get('topic');
 
     useEffect(() => {
-        getArticlesList(searchByTopic || 'all')
+        getArticlesList(searchByTopic)
         .then(response => {
             setArticlesList(response.data.articles)
             setLoading(false)
         })
-    }, [selectedTopic]);
+    }, [searchByTopic]);
 
     useEffect(() => {
         fetchTopics()

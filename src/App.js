@@ -11,9 +11,9 @@ function App() {
       <BrowserRouter>
       <Header />
         <Routes>
-          <Route path="/" element={<ArticlesListPage />}></Route>
           <Route path="/articles" element={<ArticlesListPage />}></Route>
           <Route path="/articles/:article_id" element={<SingleArticlePage/>}></Route>
+          <Route path="/" element={<LoginPage/>}></Route>
           <Route path="/login" element={<LoginPage/>}></Route>
         </Routes>
       </BrowserRouter>

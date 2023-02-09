@@ -5,7 +5,7 @@ const myApi = axios.create({
 });
 
 export const getArticlesList = (topic) => {
-  return myApi.get(`/articles/${topic != 'all' ? `?topic=${topic}` : ''}`)
+  return myApi.get(`/articles${topic === 'all' || topic === null ? '' : `?topic=${topic}`}`)
 }
 
 export const getArticle = (article_id) => {
