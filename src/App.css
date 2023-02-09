@@ -411,3 +411,23 @@ header.header .user-info p {
   padding: 10px;
   font-size: 1.1rem;
 }
+
+.sort-section {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 10px 45px 15px 20px;
+  padding: 10px;
+}
+
+.sort-section select {
+  padding: 5px 10px;
+  
+}
+
+.sort-section label {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  margin-left: 10px;
+}

@@ -4,8 +4,13 @@ const myApi = axios.create({
   baseURL: 'https://julia-ozmitel-backend-project.onrender.com/api',
 });
 
-export const getArticlesList = (topic) => {
-  return myApi.get(`/articles${topic === 'all' || topic === null ? '' : `?topic=${topic}`}`)
+export const getArticlesList = (topic, sortBy, order) => {
+  return myApi.get(`/articles?${topic === 'all' || topic === null ? '' : `topic=${topic}`}`, {
+    params: {
+      sort_by: sortBy,
+      order: order
+    }
+  })
 }
 
 export const getArticle = (article_id) => {

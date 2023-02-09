@@ -3,10 +3,11 @@ import { useState } from "react";
 export const ArticleTopics = ({topics, setSelectedTopic}) => {
     const [topic, setTopic] = useState('all')
 
-    const handleSelect = (e) => {
-        setSelectedTopic(`topic=${e.target.value}`)
+    const handleSelectTopic = e => {
+        setSelectedTopic(currSearch => ({...currSearch, topic : e.target.value }))
         setTopic(e.target.value)
     }
+
     return (
         <section className="select-topic">
             <h1>
@@ -14,7 +15,7 @@ export const ArticleTopics = ({topics, setSelectedTopic}) => {
             </h1>
             <select 
                 name="selectedTopic" 
-                onChange={handleSelect}
+                onChange={handleSelectTopic}
                 defaultValue={topic}
             >
                 <option key="all" value="all">all</option>
