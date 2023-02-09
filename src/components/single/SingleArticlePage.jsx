@@ -39,13 +39,17 @@ export const SingleArticlePage = () => {
     useEffect(() => {
         if (newComment.author && newComment.body) {
             setComments((currComments) => [newComment, ...currComments]) 
+            console.log(newComment)
+            console.log(comments, '--before post')
             postNewComment(article_id, {
                 username: newComment.author,
                 body: newComment.body,
             })
             .catch(err => {
+                setComments((currComments) => [currComments.shift(), ...currComments])
                 console.log(err)
                 toast.error("Your comment hasn't been published!")
+                console.log(comments, '---after error')
             })
         }
     }, [newComment])
@@ -56,7 +60,7 @@ export const SingleArticlePage = () => {
             <BackLink />
             <ReadingSection article={article} setUpdatedArticle={setUpdatedArticle} />
             <CommentSection comments={comments} setNewComment={setNewComment} />
-            <ToastContainer position="top-right" autoClose={5000} limit={3} />
+            <ToastContainer position="top-right" autoClose={2000} />
         </main>
     )
 }
