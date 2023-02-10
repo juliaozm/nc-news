@@ -2,8 +2,7 @@ import { UserContext } from '../contexts/loggedinUser';
 import { useContext, useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { BackLink } from './BackLink';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 export const LoginPage = () => {
     const [input, setInput] = useState('weegembump');
@@ -27,7 +26,9 @@ export const LoginPage = () => {
         if (input === 'weegembump') {
             setLoggedInUser(() => ({...newLoggedInUser }))
         } else {
-            toast.error('Enter the right username!')
+            toast.error('Enter the right username!', {
+                toastId: "error"        
+            })
         }
     }
 
@@ -44,7 +45,6 @@ export const LoginPage = () => {
                 />
                 <button>Login</button>
             </form>
-            <ToastContainer position="top-right" autoClose={5000} limit={1} />
         </main>
     )
 }

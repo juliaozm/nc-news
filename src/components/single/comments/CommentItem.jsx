@@ -1,12 +1,39 @@
+import { useContext, useEffect, useState } from 'react'
+import { UserContext } from '../../../contexts/loggedinUser';
 import { IoMdThumbsUp, IoMdThumbsDown } from "react-icons/io";
+import { MdDelete} from "react-icons/md";
 
-export const CommentItem = ({comment}) => {
+export const CommentItem = ({comment, setDeletedComment }) => {
+    const { loggedInUser } = useContext(UserContext)
+    const [btnActive, setBtnActive] = useState(false)
+    const [animate, setAnimate] = useState(false)
     const date = new Date(Date.parse(comment.created_at)).toLocaleString('en-GB', { timeZone: 'UTC'})
+    
+    useEffect(() => {
+        if (loggedInUser.username === 'weegembump' 
+            && comment.author === 'weegembump' ) {
+            setBtnActive(true)
+        }
+    }, [loggedInUser, comment])
 
-    return <li className="comment-item">
+    
+    const handleDeleteComment = (e) => {
+        e.preventDefault();
+        setDeletedComment(comment)
+        setAnimate(true)
+    }
+
+    return <li className={"comment-item " + (animate ? 'slide-left' : '' )}>
                 <div className="header">
                     <h3>{comment.author}</h3>
-                    <span className="date">{date}</span>
+                    <div className='date-info'>
+                        <span className="date">{date}</span>
+                        { btnActive 
+                            ? <button onClick={handleDeleteComment} className='btn-delete'><MdDelete /></button> 
+                            : ''
+                        }
+                    </div>
+                    
                 </div>
                 <p className="text">{comment.body}</p>
                 <div className="vote">

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { HiOutlineXMark } from "react-icons/hi2";
 import { useContext } from 'react'
 import { UserContext } from '../../../contexts/loggedinUser';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const CommentAdder = ({addNewComment}) => {
@@ -21,11 +21,15 @@ export const CommentAdder = ({addNewComment}) => {
         setError(false)
         if (!loggedInUser.username || !loggedInUser.username == undefined) {
             setError(true)
-            toast.error('Please login to post a comment')
+            toast.error('Please login to post a comment', {
+                toastId: "error"        
+            })
         } 
         if (!newCommentText || newCommentText == undefined) {
             setError(true)
-            toast.error('Please enter a valid comment')
+            toast.error('Please enter a valid comment', {
+                toastId: "error"        
+            })
         } 
     }
 
@@ -64,7 +68,6 @@ export const CommentAdder = ({addNewComment}) => {
             />
             {btnActive ? <button onClick={() => setNewCommentText('')} className="reset-btn"> <HiOutlineXMark /></button> : ''}
             {btnActive ? <button className='submit-btn'> Add comment </button> : ''}
-            <ToastContainer position="top-right" autoClose={5000} limit={3} />
         </form>
     )
 }

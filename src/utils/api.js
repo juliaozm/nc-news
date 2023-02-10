@@ -32,3 +32,7 @@ export const postNewComment = (article_id, comment) => {
 export const fetchTopics = () => {
   return myApi.get(`/topics`)
 }
+
+export const deleteComment = (comment_id) => {
+  return myApi.delete(`/comments/${comment_id}`)
+}
