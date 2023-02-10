@@ -17,7 +17,7 @@ export const LoginPage = () => {
 
     useEffect(() => {
         if (loggedInUser.username) {
-          navigate("/articles");
+          navigate(-1);
         }
       }, [loggedInUser]);
 

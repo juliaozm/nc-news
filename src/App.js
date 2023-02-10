@@ -7,11 +7,12 @@ import { Header } from './components/Header';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
 function App() {
   return (
     <div>
       <BrowserRouter>
-      <Header />
+        <Header />
         <Routes>
           <Route path="/articles" element={<ArticlesListPage />}></Route>
           <Route path="/articles/:article_id" element={<SingleArticlePage/>}></Route>
