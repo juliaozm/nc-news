@@ -25,7 +25,8 @@ main {
   margin-top: 30px;
 }
 
-a, a:visited {
+a,
+a:visited {
   text-decoration: none;
   color: #000;
 }
@@ -43,7 +44,7 @@ button {
 }
 
 /* Articles List Page */
-.articles-page h1{
+.articles-page h1 {
   text-align: center;
 }
 
@@ -132,7 +133,6 @@ button {
   font-weight: 400;
   line-height: 1.2;
 }
-
 
 /* Single Article Page */
 .read-article,
@@ -226,7 +226,7 @@ button {
 }
 
 .comment-item .date-info .btn-delete:hover {
-  background-color: #f25151
+  background-color: #f25151;
 }
 
 .comment-item .date {
@@ -279,10 +279,10 @@ button {
   border: 1px solid #0e8542;
   color: rgb(43, 144, 43);
 }
- 
+
 .dislike-active {
-  border: 1px solid #FF0063;
-  color: #FF0063;
+  border: 1px solid #ff0063;
+  color: #ff0063;
 }
 
 /* Comment Adder  */
@@ -336,9 +336,9 @@ button {
 }
 
 .loader {
-  border: 8px solid #f3f3f3;
+  border: 8px solid #d8d6d6;
   border-radius: 50%;
-  border-top: 8px solid #769eb8;
+  border-top: 8px solid transparent;
   width: 50px;
   height: 50px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
@@ -347,13 +347,21 @@ button {
 
 /* Loader Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 header.header {
@@ -404,10 +412,9 @@ header.header .user-info p {
   display: flex;
   flex-direction: column;
 }
-.login-form label, 
+.login-form label,
 .login-form input,
-.login-form button
- {
+.login-form button {
   margin: 10px;
   padding: 10px;
 }
@@ -439,7 +446,6 @@ header.header .user-info p {
 
 .sort-section select {
   padding: 5px 10px;
-  
 }
 
 .sort-section label {
@@ -450,27 +456,23 @@ header.header .user-info p {
 }
 
 .comment-item.slide-left {
-	animation: slide-left 0.5s ease-in-out both;
+  animation: slide-left 0.8s ease-in both;
 }
 
- @keyframes slide-left {
+@keyframes slide-left {
   0% {
     transform: translateX(0);
     opacity: 1;
     display: block;
   }
 
-  99%  {
-    transform: translateX(-30%);
-    opacity: 0;
-    display: block;
+  98% {
+    transform: translateX(-60%);
+    opacity: 0.1;
   }
 
   100% {
-    transform: translateX(-30%);
-    opacity: 0;
-    min-height: 0;
-    max-height: 0;
     display: none;
+    opacity: 0;
   }
 }
