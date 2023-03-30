@@ -35,8 +35,9 @@ export const SingleArticlePage = () => {
     }
   }, [updatedArticle]);
 
-  if (isLoading) return <LoadingItem />;
-  return (
+  return isLoading ? (
+    <LoadingItem />
+  ) : (
     <main className="container">
       <BackLink />
       <ReadingSection article={article} setUpdatedArticle={setUpdatedArticle} />

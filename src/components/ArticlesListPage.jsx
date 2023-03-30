@@ -1,42 +1,66 @@
-import {useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getArticlesList, fetchTopics } from '../utils/api';
-import { ArticlesList } from './ArticlesList';
-import { ArticleTopics } from './ArticleTopics';
-import { ArticlesSortBy } from './ArticlesSortBy';
-import { LoadingItem } from './LoadingItem';
+import { getArticlesList, fetchTopicsList } from "../utils/api";
+import { ArticlesList } from "./ArticlesList";
+import { ArticleTopics } from "./ArticleTopics";
+import { ArticlesSortBy } from "./ArticlesSortBy";
+import { LoadingItem } from "./LoadingItem";
 
 export const ArticlesListPage = () => {
-    const [topics, setTopics] = useState([]);
-    const [articlesList, setArticlesList] = useState([]);
-    let [searchParams, setSearchParams] = useSearchParams();
-    const [isLoading, setLoading] = useState(true);
-    
-    let topic = searchParams.get('topic');
-    let sortBy = searchParams.get('sort_by');
-    let order = searchParams.get('order');
+  const [topicList, setTopics] = useState([]);
+  const [topic, setTopic] = useState("");
+  const [sortBy, setSortBy] = useState("");
+  const [order, setOrder] = useState("");
+  const [articlesList, setArticlesList] = useState([]);
+  const [isLoading, setLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-    useEffect(() => {
-        getArticlesList(topic, sortBy, order)
-        .then(response => {
-            setArticlesList(response.data.articles)
-            setLoading(false)
-        })
-    }, [topic, sortBy, order]);
+  useEffect(() => {
+    fetchTopicsList().then((topicsFromApi) => {
+      setTopics(topicsFromApi.data.topics);
+    });
+  }, []);
 
-    useEffect(() => {
-        fetchTopics()
-        .then(topicsFromApi => {
-            setTopics(topicsFromApi.data.topics)
-        })
-    }, [])
+  useEffect(() => {
+    const topicFromUrl = searchParams.get("topic");
+    const sortByFromUrl = searchParams.get("sort_by");
+    const orderFromUrl = searchParams.get("order");
+    setTopic(topicFromUrl || "all");
+    setSortBy(sortByFromUrl || "created_at");
+    setOrder(orderFromUrl || "desc");
+  }, []);
 
-    if (isLoading) return <LoadingItem />
-    return (
-        <main className='articles-page'>
-           <ArticleTopics topics={topics} setSelectedTopic={setSearchParams} />
-           <ArticlesSortBy setSelectedSortBy={setSearchParams} />
-           <ArticlesList articles={articlesList} />
-        </main>
-    )
-}
+  useEffect(() => {
+    setLoading(true);
+    getArticlesList(topic, sortBy, order)
+      .then((response) => {
+        setArticlesList(response.data.articles);
+        setSearchParams({
+          topic: topic,
+          sort_by: sortBy,
+          order: order,
+        });
+        setLoading(false);
+        const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
+        window.history.replaceState(null, "", newUrl);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
+  }, [topic, sortBy, order, searchParams]);
+
+  return (
+    <main className="articles-page">
+      <ArticleTopics topic={topic} topicList={topicList} setTopic={setTopic} />
+      <ArticlesSortBy
+        order={order}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        setOrder={setOrder}
+      />
+      {isLoading && <LoadingItem />}
+      {articlesList.length > 0 && <ArticlesList articles={articlesList} />}
+    </main>
+  );
+};
