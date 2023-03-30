@@ -8,7 +8,6 @@ export const ArticlesSortBy = ({ order, sortBy, setSortBy, setOrder }) => {
   return (
     <section className="sort-section">
       <label>
-        {" "}
         Sort by:
         <select
           name="sort_by"

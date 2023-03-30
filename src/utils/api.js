@@ -6,9 +6,9 @@ const myApi = axios.create({
 
 export const getArticlesList = (topic, sortBy, order) => {
   return myApi.get(
-    `/articles?order=${order}&sort_by=${sortBy}&${
-      topic === "all" ? "" : `topic=${topic}`
-    }`
+    `/articles?${!order || order === null ? "" : `order=${order}&`}${
+      !sortBy || sortBy === null ? "" : `sort_by=${sortBy}&`
+    }${!topic || topic === "all" || topic === null ? "" : `topic=${topic}`}`
   );
 };
 
@@ -28,7 +28,7 @@ export const postNewComment = (article_id, comment) => {
   return myApi.post(`/articles/${article_id}/comments`, comment);
 };
 
-export const fetchTopicsList = () => {
+export const getTopicsList = () => {
   return myApi.get(`/topics`);
 };
 
