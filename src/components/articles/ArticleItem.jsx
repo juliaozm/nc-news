@@ -16,7 +16,11 @@ export const ArticleItem = ({ article }) => {
         ></img>
         <div className="info">
           <p className="title">{article.title}</p>
-          <p className="author">by {article.author}</p>
+          <p className="author">
+            by{" "}
+            {article.author &&
+              article.author[0].toUpperCase() + article.author.slice(1)}
+          </p>
         </div>
         <p className="date">{date}</p>
         <div className="stats-block">

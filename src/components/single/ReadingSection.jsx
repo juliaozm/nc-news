@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { IoMdThumbsUp, IoMdThumbsDown } from "react-icons/io";
+import { UserContext } from "../../contexts/loggedinUser";
 
 export const ReadingSection = ({ article, setUpdatedArticle }) => {
+  const [activeBtn, setActiveBtn] = useState("");
+  const [disabledBtn, setDisabledBtn] = useState(true);
+  const { loggedInUser, setLoggedInUser } = useContext(UserContext);
+
   const date = new Date(Date.parse(article.created_at)).toLocaleString(
     "en-GB",
     { timeZone: "UTC" }
   );
 
-  const [activeBtn, setActiveBtn] = useState("");
+  useEffect(() => {
+    loggedInUser.username ? setDisabledBtn(false) : setDisabledBtn(true);
+  }, [loggedInUser]);
 
   const handleVote = (e) => {
     e.preventDefault();
@@ -37,7 +44,16 @@ export const ReadingSection = ({ article, setUpdatedArticle }) => {
       <span>{date}</span>
       <h1>{article.title}</h1>
       <h2>
-        by <em>{article.author}</em> in <em>{article.topic}</em>
+        by{" "}
+        <em>
+          {article.author &&
+            article.author[0].toUpperCase() + article.author.slice(1)}
+        </em>{" "}
+        in{" "}
+        <em>
+          {article.topic &&
+            article.topic[0].toUpperCase() + article.topic.slice(1)}
+        </em>
       </h2>
       <img
         src={article.article_img_url}
@@ -46,7 +62,7 @@ export const ReadingSection = ({ article, setUpdatedArticle }) => {
       <p>{article.body}</p>
       <p>{article.body}</p>
       <div className="vote">
-        <button onClick={handleVote}>
+        <button onClick={handleVote} disabled={disabledBtn}>
           {!activeBtn || activeBtn === "none" ? (
             <span className="neutral">
               {" "}

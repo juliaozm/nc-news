@@ -12,7 +12,7 @@ export const ArticleTopics = ({ topic, topicList, setTopic }) => {
         {topicList.map((topic) => {
           return (
             <option key={topic.slug} value={topic.slug}>
-              {topic.slug[0].toUpperCase() + topic.slug.slice(1)}
+              {topic.slug && topic.slug[0].toUpperCase() + topic.slug.slice(1)}
             </option>
           );
         })}
