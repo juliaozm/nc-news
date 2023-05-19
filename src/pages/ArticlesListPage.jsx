@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getArticlesList, getTopicsList } from "../../utils/api";
-import { ArticlesList } from "./ArticlesList";
-import { ArticleTopics } from "./ArticleTopics";
-import { ArticlesSortBy } from "./ArticlesSortBy";
-import { LoadingItem } from "../LoadingItem";
-import { ErrorComponent } from "../ErrorComponent";
+import { getArticlesList, getTopicsList } from "utils/api";
+import { ArticlesList } from "components/articles/ArticlesList";
+import { SelectTopics } from "components/articles/SelectTopics";
+import { SelectSortBy } from "components/articles/SelectSortBy";
+import { ToggleOrder } from "components/articles/ToggleOrder";
+import { LoadingItem } from "components/UI/LoadingItem";
+import { ErrorPage } from "pages/ErrorPage";
 import { toast } from "react-toastify";
 
 export const ArticlesListPage = () => {
@@ -19,7 +20,8 @@ export const ArticlesListPage = () => {
 
   useEffect(() => {
     getTopicsList().then((topicsFromApi) => {
-      setTopicsList(topicsFromApi.data.topics);
+      const topics = topicsFromApi.data.topics.map((topic) => topic.slug);
+      setTopicsList(topics);
     });
   }, []);
 
@@ -57,22 +59,28 @@ export const ArticlesListPage = () => {
   }, [searchParams]);
 
   return (
-    <main className="articles-page">
-      <ArticleTopics topic={topic} topicList={topicsList} setTopic={setTopic} />
+    <>
       {error ? (
-        <ErrorComponent error={error} />
+        <ErrorPage />
       ) : (
-        <div>
-          {articlesList.length === 0 && <LoadingItem />}
-          <ArticlesSortBy
-            order={order}
-            sortBy={sortBy}
-            setSortBy={setSortBy}
-            setOrder={setOrder}
-          />
-          <ArticlesList articles={articlesList} />
-        </div>
+        <main className="mx-auto mb-10 px-4 2xl:container lg:px-8 xl:px-16">
+          <section className="mb-4 mt-4 flex items-end justify-between">
+            <SelectTopics
+              topic={topic}
+              topicList={topicsList}
+              setTopic={setTopic}
+            />
+            <div className="z-50 flex">
+              <SelectSortBy sortBy={sortBy} setSortBy={setSortBy} />
+              <ToggleOrder order={order} setOrder={setOrder} />
+            </div>
+          </section>
+          <section>
+            {articlesList.length === 0 && <LoadingItem />}
+            <ArticlesList articles={articlesList} />
+          </section>
+        </main>
       )}
-    </main>
+    </>
   );
 };
