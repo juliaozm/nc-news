@@ -1,12 +1,14 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { postNewComment } from "../../../utils/api";
-import { HiOutlineXMark } from "react-icons/hi2";
-import { UserContext } from "../../../contexts/loggedinUser";
+import { postNewComment } from "utils/api";
+import { UserContext } from "contexts/loggedinUser";
+import { ButtonClear } from "components/UI/ButtonClear";
+import { ButtonPrimary } from "components/UI/ButtonPrimary";
+import { TextInput } from "components/UI/TextInput";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const CommentAdder = ({ setComments }) => {
+export const CommentAdderForm = ({ setComments }) => {
   const { article_id } = useParams();
   const { loggedInUser } = useContext(UserContext);
   const [key, setKey] = useState("");
@@ -33,10 +35,6 @@ export const CommentAdder = ({ setComments }) => {
         toastId: "error",
       });
     }
-  };
-
-  const handleCommentInput = (e) => {
-    setNewCommentText(e.target.value);
   };
 
   const handleSubmitComment = (e) => {
@@ -94,27 +92,25 @@ export const CommentAdder = ({ setComments }) => {
   }, [newComment]);
 
   return (
-    <form onSubmit={handleSubmitComment} className="comment-adder">
-      <input
-        type="text"
+    <form onSubmit={handleSubmitComment} className="relative mb-6">
+      <TextInput
         name="body"
         placeholder="Add new comment"
         minLength={5}
         maxLength={200}
-        required
+        required={true}
         value={newCommentText}
-        onChange={handleCommentInput}
-        className="comment-input"
+        autoComplete="off"
+        setNewValue={setNewCommentText}
       />
       {btnActive ? (
-        <button onClick={() => setNewCommentText("")} className="reset-btn">
-          {" "}
-          <HiOutlineXMark />
-        </button>
+        <>
+          <ButtonClear setDelete={() => setNewCommentText("")} />
+          <ButtonPrimary text={"Add comment"} />
+        </>
       ) : (
         ""
       )}
-      {btnActive ? <button className="submit-btn"> Add comment </button> : ""}
     </form>
   );
 };

@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { UserContext } from "../../../contexts/loggedinUser";
-import { deleteComment } from "../../../utils/api";
-import { IoMdThumbsUp, IoMdThumbsDown } from "react-icons/io";
-import { MdDelete } from "react-icons/md";
+import { UserContext } from "contexts/loggedinUser";
+import { deleteComment } from "utils/api";
+import { ButtonDelete } from "components/UI/ButtonDelete";
 import { toast } from "react-toastify";
+// import { CommentVote } from "components/comments/CommentVote";
 
 export const CommentItem = ({ comment, setComments }) => {
   const { loggedInUser } = useContext(UserContext);
@@ -53,36 +53,16 @@ export const CommentItem = ({ comment, setComments }) => {
   }, [deletedComment]);
 
   return (
-    <li className={"comment-item " + (animate ? "slide-left" : "")}>
-      <div className="header">
-        <h3>{comment.author}</h3>
-        <div className="date-info">
-          <span className="date">{date}</span>
-          {btnActive ? (
-            <button onClick={handleDeleteComment} className="btn-delete">
-              <MdDelete />
-            </button>
-          ) : (
-            ""
-          )}
+    <li className={"mb-4 md:mb-6 xl:mb-8 " + (animate ? "slide-left" : "")}>
+      <div className="flex justify-between">
+        <h3 className="mb-1 font-semibold capitalize">{comment.author}</h3>
+        <div className="mb-1 flex items-center">
+          <span className="text-gray-500 ">{date}</span>
+          {btnActive ? <ButtonDelete handleDelete={handleDeleteComment} /> : ""}
         </div>
       </div>
-      <p className="text">{comment.body}</p>
-      <div className="vote">
-        <button className="up">
-          {" "}
-          <IoMdThumbsUp />{" "}
-        </button>
-        <button className="down">
-          {" "}
-          <IoMdThumbsDown />{" "}
-        </button>
-        {comment.votes > 0 ? (
-          <span className="green">{comment.votes}</span>
-        ) : (
-          <span className="red">{comment.votes}</span>
-        )}
-      </div>
+      <p className="font-base mb-2">{comment.body}</p>
+      {/* <CommentVote comment={comment} />  No API call for this feature */}
     </li>
   );
 };
