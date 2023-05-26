@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { postNewComment } from "utils/api";
 import { UserContext } from "contexts/loggedinUser";
 import { ButtonClear } from "components/UI/ButtonClear";
-import { ButtonPrimary } from "components/UI/ButtonPrimary";
+import { ButtonLink } from "components/UI/ButtonLink";
 import { TextInput } from "components/UI/TextInput";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -106,7 +106,7 @@ export const CommentAdderForm = ({ setComments }) => {
       {btnActive ? (
         <>
           <ButtonClear setDelete={() => setNewCommentText("")} />
-          <ButtonPrimary text={"Add comment"} />
+          <ButtonLink text={"Add comment"} />
         </>
       ) : (
         ""

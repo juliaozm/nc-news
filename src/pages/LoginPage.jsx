@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BackLink } from "components/UI/BackLink";
 import { toast } from "react-toastify";
-import { ButtonPrimary } from "components/UI/ButtonPrimary";
+import { ButtonLink } from "components/UI/ButtonLink";
 import { TextInput } from "components/UI/TextInput";
 
 export const LoginPage = () => {
@@ -52,7 +52,7 @@ export const LoginPage = () => {
           required={true}
           autoComplete={"on"}
         />
-        <ButtonPrimary text={"Login"} className={"w-full"} />
+        <ButtonLink text={"Login"} className={"w-full"} />
       </form>
     </main>
   );

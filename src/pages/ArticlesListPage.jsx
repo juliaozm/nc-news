@@ -9,6 +9,7 @@ import { ToggleOrder } from "components/articles/ToggleOrder";
 import { LoadingItem } from "components/UI/LoadingItem";
 import { toast } from "react-toastify";
 import { Pagination } from "components/UI/Pagination";
+import { ToggleOpenFilters } from "components/articles/ToggleOpenFilters";
 
 export const ArticlesListPage = () => {
   const [topicsList, setTopicsList] = useState([]);
@@ -21,7 +22,7 @@ export const ArticlesListPage = () => {
   const [articlesList, setArticlesList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [error, setError] = useState(null);
-  const [isFilterOpen, setFilterOpen] = useState(true);
+  const [isFilterOpen, setFilterOpen] = useState(false);
 
   useEffect(() => {
     getTopicsList().then((topicsFromApi) => {
@@ -72,61 +73,52 @@ export const ArticlesListPage = () => {
   //     window.history.replaceState(null, "", newUrl);
   //   }
   // }, [searchParams]);
-  const handleOpenFilters = () => {
-    setFilterOpen(!isFilterOpen);
-  };
 
   return (
-    <>
-      <main className="mx-auto mb-10 px-4 2xl:container lg:px-8 xl:px-16">
-        <div>
-          <button className="sm:hidden" onClick={() => handleOpenFilters()}>
-            icon Filter
-          </button>
-        </div>
-        {isFilterOpen && (
-          <section className="z-50 mb-4 mt-4 flex flex-wrap items-end justify-between sm:flex-nowrap">
-            <div className="flex w-full flex-wrap items-center justify-between sm:flex-nowrap sm:justify-start">
-              <SelectTopics
-                topic={topic}
-                topicList={topicsList}
-                setTopic={setTopic}
-                setPage={setPage}
-                setLimit={setLimit}
-              />
-              <SelectLimit
-                limit={limit}
-                setLimit={setLimit}
-                setPage={setPage}
-              />
-            </div>
-
-            <div className="flex w-full flex-wrap items-center justify-start justify-between sm:flex-nowrap sm:justify-end">
-              <SelectSortBy
-                sortBy={sortBy}
-                setSortBy={setSortBy}
-                setPage={setPage}
-              />
-              <ToggleOrder
-                order={order}
-                setOrder={setOrder}
-                setPage={setPage}
-              />
-            </div>
-          </section>
-        )}
-
-        <section>
-          {articlesList.length === 0 && <LoadingItem />}
-          <ArticlesList articles={articlesList} />
-        </section>
-        <Pagination
-          totalCount={totalArticlesCount}
-          page={page}
-          limit={limit}
-          setPage={setPage}
+    <main className="mx-auto mb-10 px-4 2xl:container lg:px-8 xl:px-16">
+      <div className="my-2 sm:hidden ">
+        <ToggleOpenFilters
+          isFilterOpen={isFilterOpen}
+          setFilterOpen={setFilterOpen}
+          className="my-2 sm:hidden"
         />
-      </main>
-    </>
+      </div>
+      <section
+        className={`${
+          isFilterOpen ? "flex flex-wrap" : "hidden"
+        } z-50 mb-2 mt-2 items-end justify-between sm:flex sm:flex-nowrap`}
+      >
+        <div className="flex w-full flex-wrap items-center justify-between sm:flex-nowrap sm:justify-start">
+          <SelectTopics
+            topic={topic}
+            topicList={topicsList}
+            setTopic={setTopic}
+            setPage={setPage}
+          />
+          <SelectLimit limit={limit} setLimit={setLimit} setPage={setPage} />
+        </div>
+        <div className="flex w-full flex-wrap items-center justify-start justify-between sm:flex-nowrap sm:justify-end">
+          <SelectSortBy
+            sortBy={sortBy}
+            setSortBy={setSortBy}
+            setPage={setPage}
+          />
+          <ToggleOrder order={order} setOrder={setOrder} setPage={setPage} />
+        </div>
+      </section>
+      {articlesList.length === 0 ? (
+        <LoadingItem />
+      ) : (
+        <section>
+          <ArticlesList articles={articlesList} />
+          <Pagination
+            totalCount={totalArticlesCount}
+            page={page}
+            limit={limit}
+            setPage={setPage}
+          />
+        </section>
+      )}
+    </main>
   );
 };

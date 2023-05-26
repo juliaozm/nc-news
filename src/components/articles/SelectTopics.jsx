@@ -1,11 +1,5 @@
 import { SelectInput } from "components/UI/SelectInput";
-export const SelectTopics = ({
-  topic,
-  topicList,
-  setTopic,
-  setPage,
-  setLimit,
-}) => {
+export const SelectTopics = ({ topic, topicList, setTopic, setPage }) => {
   const sortTopics = [{ value: "all", label: "All topics" }].concat(
     topicList.map((topic) => ({
       value: topic,

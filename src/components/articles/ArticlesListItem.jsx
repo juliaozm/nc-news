@@ -5,7 +5,7 @@ import {
   HiCalendar,
   HiArrowRightCircle,
 } from "react-icons/hi2";
-import { ButtonPrimary } from "components/UI/ButtonPrimary";
+import { ButtonLink } from "components/UI/ButtonLink";
 
 export const ArticlesListItem = ({ article }) => {
   const date = new Date(Date.parse(article.created_at)).toLocaleString(
@@ -18,7 +18,7 @@ export const ArticlesListItem = ({ article }) => {
         <div>
           <div className="relative mb-4 h-52 2xl:h-72">
             <div className="group/read absolute bottom-5 left-3 z-20 opacity-0 transition-all lg:group-hover/item:opacity-100">
-              <ButtonPrimary
+              <ButtonLink
                 text={"Read more"}
                 svg={
                   <HiArrowRightCircle
@@ -26,7 +26,7 @@ export const ArticlesListItem = ({ article }) => {
                     className="ml-2 transition-all group-hover/read:translate-x-1"
                   />
                 }
-              ></ButtonPrimary>
+              ></ButtonLink>
             </div>
             <img
               src={article.article_img_url}
