@@ -1,5 +1,11 @@
 import { SelectInput } from "components/UI/SelectInput";
-export const SelectTopics = ({ topic, topicList, setTopic }) => {
+export const SelectTopics = ({
+  topic,
+  topicList,
+  setTopic,
+  setPage,
+  setLimit,
+}) => {
   const sortTopics = [{ value: "all", label: "All topics" }].concat(
     topicList.map((topic) => ({
       value: topic,
@@ -9,15 +15,15 @@ export const SelectTopics = ({ topic, topicList, setTopic }) => {
   const selectedOption = sortTopics.find((option) => option.value === topic);
   const handleSelectTopic = (selectedOption) => {
     setTopic(selectedOption.value);
+    setPage(1);
   };
   return (
-    <label className="mr-4 flex flex-col">
-      <SelectInput
-        name="selectedTopic"
-        value={selectedOption}
-        onChange={handleSelectTopic}
-        options={sortTopics}
-      />
-    </label>
+    <SelectInput
+      name="selectedTopic"
+      value={selectedOption}
+      onChange={handleSelectTopic}
+      options={sortTopics}
+      selectLabel={"Topic"}
+    />
   );
 };

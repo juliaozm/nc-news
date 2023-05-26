@@ -1,5 +1,5 @@
 import Select from "react-select";
-export const SelectInput = ({ value, onChange, options }) => {
+export const SelectInput = ({ selectLabel, value, onChange, options }) => {
   const customStyles = {
     menu: (provided) => ({
       ...provided,
@@ -26,12 +26,15 @@ export const SelectInput = ({ value, onChange, options }) => {
     }),
   };
   return (
-    <Select
-      value={value}
-      onChange={onChange}
-      options={options}
-      styles={customStyles}
-      closeMenuOnScroll={true}
-    />
+    <div className="mb-1 ml-2 mr-2 mt-1 flex flex-col">
+      <span className="mb-1 block font-semibold">{selectLabel}</span>
+      <Select
+        value={value}
+        onChange={onChange}
+        options={options}
+        styles={customStyles}
+        closeMenuOnScroll={true}
+      />
+    </div>
   );
 };

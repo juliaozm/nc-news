@@ -1,5 +1,5 @@
 import { SelectInput } from "components/UI/SelectInput";
-export const SelectSortBy = ({ sortBy, setSortBy }) => {
+export const SelectSortBy = ({ sortBy, setSortBy, setPage }) => {
   const sortOptions = [
     { value: "created_at", label: "Date" },
     { value: "votes", label: "Votes" },
@@ -8,6 +8,7 @@ export const SelectSortBy = ({ sortBy, setSortBy }) => {
   const selectedOption = sortOptions.find((option) => option.value === sortBy);
   const handleSelectSort = (selectedOption) => {
     setSortBy(selectedOption.value);
+    setPage(1);
   };
   return (
     <SelectInput
@@ -16,6 +17,7 @@ export const SelectSortBy = ({ sortBy, setSortBy }) => {
       value={selectedOption}
       onChange={handleSelectSort}
       options={sortOptions}
+      selectLabel={"Sort"}
     />
   );
 };
