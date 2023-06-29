@@ -1,16 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
+import "assets/styles/index.css";
+import App from "pages/App";
 import { UserProvider } from "contexts/loggedinUser";
-import reportWebVitals from "./reportWebVitals";
+import { AuthTokensProvider } from "contexts/authTokenContext";
+import reportWebVitals from "./utils/reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <UserProvider>
-      <App />
-    </UserProvider>
+    <AuthTokensProvider>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </AuthTokensProvider>
   </React.StrictMode>
 );
 
