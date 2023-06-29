@@ -6,8 +6,9 @@
       "utils/*": ["utils/*"],
       "assets/*": ["assets/*"],
       "context/*": ["context/*"],
-      "pages/*": ["pages/*"]
+      "pages/*": ["pages/*"],
+      "firebaseConfig/*": ["firebaseConfig/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "public/__tests"]
 }
