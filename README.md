@@ -4,9 +4,9 @@
 
 The NC-News React App is a front-end implementation of a news app that interacts with the [NC-News API](https://github.com/juliaozm/project-news), which serves as the backend for this application. This React app was developed as part of my studies at Northcoders coding bootcamp.
 
-The API is hosted on a free provider [render.com](https://julia-ozmitel-backend-project.onrender.com/api). Please note that it may take up to a minute to serve the first request as the server needs to spin up. Subsequent requests should be faster.
+The API is hosted on a **free provider** [render.com](https://julia-ozmitel-backend-project.onrender.com/api). Please note that it **may take up to a minute to serve the first request** as the server needs to spin up. Subsequent requests should be faster.
 
-##### DEMO: The app is live at [NC-News Front-End App](https://juliaozm.netlify.app)
+#### DEMO: The app is live at [NC-News Front-End App](https://juliaozm.netlify.app)
 
 ## Features
 
