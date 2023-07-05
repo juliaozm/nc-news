@@ -7,13 +7,14 @@ import { GoogleAuthProvider } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const API_KEY = process.env.REACT_APP_API_KEY;
+
 const firebaseConfig = {
   apiKey: API_KEY,
-  authDomain: "blog-48395.firebaseapp.com",
-  projectId: "blog-48395",
-  storageBucket: "blog-48395.appspot.com",
-  messagingSenderId: "114581124770",
-  appId: "1:114581124770:web:727f93864ad1466c4fc9fb",
+  authDomain: "nc-news-juliaozm.firebaseapp.com",
+  projectId: "nc-news-juliaozm",
+  storageBucket: "nc-news-juliaozm.appspot.com",
+  messagingSenderId: "925768717564",
+  appId: "1:925768717564:web:e90785f1da34b7ff827379",
 };
 
 // Initialize Firebase

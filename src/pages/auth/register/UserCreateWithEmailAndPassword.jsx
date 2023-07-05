@@ -9,7 +9,6 @@ export const UserCreateWithEmailAndPassword = ({
   setUserChecked,
   setLoggedInUser,
   setAccessToken,
-  setRefreshToken,
   setAccessTokenExpiration,
 }) => {
   const [password, setPassword] = useState("");
@@ -24,7 +23,6 @@ export const UserCreateWithEmailAndPassword = ({
         // Signed in
         const decodedToken = jwtDecode(tokens.data.accessToken);
         setAccessToken(() => tokens.data.accessToken);
-        setRefreshToken(() => tokens.data.refreshToken);
         setAccessTokenExpiration(() => decodedToken.exp);
         setLoggedInUser(() => ({
           username: decodedToken.username,

@@ -21,7 +21,7 @@ export const AuthFormsSection = () => {
   }, [loggedInUser]);
 
   return (
-    <div className="mx-auto p-4 md:w-3/4 md:px-6 md:py-10 xl:w-2/3">
+    <div className="mx-auto p-4 md:px-20 md:py-10 lg:w-2/3">
       {userChecked === "none" && (
         <UserCheckForm
           setEmail={setEmail}
