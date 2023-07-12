@@ -5,6 +5,7 @@ import { ArticlesListPage } from "pages/articlesList/ArticlesListPage";
 import { AuthPage } from "pages/auth/AuthPage";
 import { ErrorPage } from "pages/error/ErrorPage";
 import { Header } from "components/header/Header";
+import { APINotification } from "components/UI/APINotification";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -12,11 +13,12 @@ function App() {
   return (
     <div>
       <BrowserRouter>
+        <APINotification />
         <Header />
         <Routes>
+          <Route path="/" element={<ArticlesListPage />}></Route>
           <Route path="/articles" element={<ArticlesListPage />}></Route>
           <Route path="/articles/:article_id" element={<ArticlePage />}></Route>
-          <Route path="/" element={<AuthPage />}></Route>
           <Route path="/login" element={<AuthPage />}></Route>
           <Route path="*" element={<ErrorPage />}></Route>
         </Routes>
