@@ -30,5 +30,9 @@ export const ArticleVoteSection = ({ article }) => {
     }
   }, [updatedArticle]);
 
-  return <VotesItem item={article} setUpdatedVotes={setUpdatedArticle} />;
+  return (
+    <section className="mx-auto md:max-w-[900px]">
+      <VotesItem item={article} setUpdatedVotes={setUpdatedArticle} />
+    </section>
+  );
 };

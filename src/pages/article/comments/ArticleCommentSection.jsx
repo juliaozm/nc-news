@@ -4,7 +4,7 @@ import { LoadingItem } from "components/UI/LoadingItem";
 
 export const ArticleCommentSection = ({ comments, setComments }) => {
   return (
-    <section className="mt-6 text-base 2xl:text-lg">
+    <section className="mx-auto mt-6 text-base md:max-w-[900px] 2xl:text-lg">
       <h2 className="mb-6 text-xl font-bold">Comments</h2>
       <CommentAdder setComments={setComments} />
       {comments.length === 0 ? (
