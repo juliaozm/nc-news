@@ -26,7 +26,7 @@ export const SelectInput = ({ selectLabel, value, onChange, options }) => {
     }),
   };
   return (
-    <div className="mb-1 ml-2 mr-2 mt-1 flex flex-col">
+    <div className="flex flex-col">
       <span className="mb-1 block font-semibold">{selectLabel}</span>
       <Select
         value={value}

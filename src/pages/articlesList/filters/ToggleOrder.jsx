@@ -5,7 +5,7 @@ export const ToggleOrder = ({ order, setOrder, setPage }) => {
     setPage(1);
   };
   return (
-    <div className="mb-1 ml-2 mr-2 mt-1 flex flex-col">
+    <div className="mb-1 ml-3 mt-1 flex flex-col">
       <span className="mb-1 block font-semibold">Order</span>
       <button
         onClick={() => handleSelectOrder(order === "desc" ? "asc" : "desc")}

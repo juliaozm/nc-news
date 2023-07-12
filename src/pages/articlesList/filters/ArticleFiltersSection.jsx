@@ -39,17 +39,16 @@ export const ArticleFiltersSection = ({
 
   return (
     <>
-      <div className="my-2 sm:hidden ">
+      <div className="mb-4 mt-4 sm:hidden">
         <ToggleOpenFilters
           isFilterOpen={isFilterOpen}
           setFilterOpen={setFilterOpen}
-          className="my-2 sm:hidden"
         />
       </div>
       <section
         className={`${
           isFilterOpen ? "flex flex-wrap" : "hidden"
-        } z-50 mb-2 mt-2 items-end justify-between sm:flex sm:flex-nowrap`}
+        } z-50 mb-4 mt-4 items-end justify-between sm:flex sm:flex-nowrap lg:px-4`}
       >
         <div className="flex w-full flex-wrap items-center justify-between sm:flex-nowrap sm:justify-start">
           <SelectTopics
