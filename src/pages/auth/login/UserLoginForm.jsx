@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { ButtonLink } from "components/UI/button/ButtonLink";
 import { TextInput } from "components/UI/input/TextInput";
 import { ButtonEdit } from "components/UI/button/ButtonEdit";
+import { ButtonToggleShow } from "components/UI/button/ButtonToggleShow";
 import { FaSpinner } from "react-icons/fa";
 
 export const UserLoginForm = ({
@@ -13,6 +14,7 @@ export const UserLoginForm = ({
   isLoading,
 }) => {
   const [passwordError, setPasswordError] = useState("");
+  const [isPasswordShown, setPasswordShown] = useState(false);
 
   useEffect(() => {
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})/;
@@ -45,15 +47,28 @@ export const UserLoginForm = ({
             />
           </div>
         </div>
-        <TextInput
-          id="password"
-          value={password}
-          placeholder={"Password"}
-          setNewValue={setPassword}
-          required={true}
-        />
+        <div className="relative flex flex-col items-center sm:flex-row">
+          <TextInput
+            id="password"
+            type={isPasswordShown ? "text" : "password"}
+            value={password}
+            placeholder={"Password"}
+            setNewValue={setPassword}
+            required={true}
+          />
+          {password.length > 0 && (
+            <div className="absolute right-0 sm:bottom-1/2">
+              <ButtonToggleShow
+                isPasswordShown={isPasswordShown}
+                setPasswordShown={setPasswordShown}
+              />
+            </div>
+          )}
+        </div>
         {passwordError && password.length > 0 && (
-          <h3 className="mb-4 px-3 text-left text-red-600">{passwordError}</h3>
+          <h3 className="mb-4 px-3 text-left text-sm text-red-600">
+            {passwordError}
+          </h3>
         )}
         <ButtonLink
           text={"Login"}
