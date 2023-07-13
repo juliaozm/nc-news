@@ -3,7 +3,7 @@ import { AuthFormsSection } from "pages/auth/AuthFormsSection";
 
 export const AuthPage = () => {
   return (
-    <main className="container relative mx-auto h-screen w-full px-4">
+    <main className="relative mx-auto h-screen w-full px-4 lg:container">
       <ButtonBackLink />
       <div className="absolute left-1/2 top-1/4 w-full -translate-x-1/2 -translate-y-1/4 transform">
         <AuthFormsSection />

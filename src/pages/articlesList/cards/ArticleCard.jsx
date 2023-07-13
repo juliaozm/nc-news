@@ -14,7 +14,7 @@ export const ArticleCard = ({ article }) => {
   );
   return (
     <Link to={`/articles/${article.article_id}`}>
-      <li className="group/item relative flex h-full flex-col lg:rounded-2xl lg:border lg:border-transparent lg:p-4 lg:hover:border-green-700 2xl:p-5">
+      <li className="group/item relative flex h-full flex-col py-4 lg:rounded-2xl lg:border lg:border-transparent lg:p-4 lg:hover:border-green-700 ">
         <div>
           <div className="relative mb-4 h-52 2xl:h-72">
             <div className="group/read absolute bottom-5 left-3 z-20 opacity-0 transition-all lg:group-hover/item:opacity-100">
@@ -31,9 +31,9 @@ export const ArticleCard = ({ article }) => {
             <img
               src={article.article_img_url}
               alt={`${article.title}`}
-              className="h-full w-full object-cover"
+              className="h-full w-full rounded-lg object-cover"
             ></img>
-            <div className="absolute inset-0 z-10 bg-gradient-to-tr from-black to-transparent opacity-0 group-hover/item:opacity-50 group-hover/item:transition-opacity"></div>
+            <div className="absolute inset-0 z-10 rounded-2xl bg-gradient-to-tr from-black to-transparent opacity-0 group-hover/item:opacity-50 group-hover/item:transition-opacity"></div>
           </div>
           <p className="mb-2 font-semibold uppercase text-green-700">
             {article.topic}
@@ -42,7 +42,7 @@ export const ArticleCard = ({ article }) => {
 
         <div className="flex h-full flex-col justify-between ">
           <div>
-            <h3 className="mb-2 line-clamp-2 font-mono text-xl font-bold capitalize text-gray-900 hover:text-green-700 hover:transition">
+            <h3 className="mb-2 line-clamp-2 font-mono text-lg font-bold capitalize text-gray-900 hover:text-green-700 hover:transition lg:text-xl">
               {article.title}
             </h3>
             <p className="mb-2 font-medium capitalize text-gray-500">

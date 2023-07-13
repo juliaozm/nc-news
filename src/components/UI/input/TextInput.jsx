@@ -1,4 +1,5 @@
 export const TextInput = ({
+  type = "text",
   setNewValue,
   placeholder,
   minLength,
@@ -7,13 +8,13 @@ export const TextInput = ({
   value,
   autoComplete,
   className,
-  disabled=false
+  disabled = false,
 }) => {
   const inputClasses =
     "block text-gray-500 outline-none bg-transparent focus:bg-transparent appearance-none focus:outline-none w-full border-b border-solid border-gray-500 p-3 pr-11 mb-4";
   return (
     <input
-      type="text"
+      type={type}
       placeholder={placeholder}
       minLength={minLength}
       maxLength={maxLength}

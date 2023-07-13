@@ -10,15 +10,15 @@ export const Header = () => {
   const location = useLocation();
   const { loggedInUser, setLoggedInUser } = useContext(UserContext);
 
-  if (location.pathname === "/" || location.pathname === "/login") {
+  if (location.pathname === "/login") {
     return null;
   }
 
   return (
-    <header className="w-full bg-white shadow-md">
-      <nav className="mx-auto flex items-center justify-between p-3 px-4 2xl:container lg:px-8 xl:px-16">
+    <header className="w-full bg-white sm:shadow-md">
+      <nav className="mx-auto mt-4 flex items-center justify-between px-4 lg:container sm:mt-0 sm:py-4 lg:px-8">
         <LogoItem />
-        {!loggedInUser.username ? (
+        {location.pathname === "/login" || !loggedInUser.username ? (
           <Link to="/login">
             <ButtonLink text={"Login"} />
           </Link>

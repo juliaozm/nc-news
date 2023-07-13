@@ -47,7 +47,7 @@ export const ArticlesListPage = () => {
   }, [articlesList]);
 
   return (
-    <main className="mx-auto mb-10 px-4 2xl:container lg:px-8 xl:px-16">
+    <main className="mx-auto mb-10 px-4 lg:container">
       <ArticleFiltersSection
         setTopic={setTopic}
         topic={topic}

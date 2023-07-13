@@ -49,7 +49,7 @@ export const UserCheckForm = ({ setUserChecked, setEmail, email }) => {
         autoComplete={"on"}
       />
       {isError && email.length > 0 && (
-        <h3 className="mb-4 px-3 text-left text-red-600">{isError}</h3>
+        <h3 className="mb-4 px-3 text-left text-sm text-red-600">{isError}</h3>
       )}
       <ButtonLink
         text={"Continue"}

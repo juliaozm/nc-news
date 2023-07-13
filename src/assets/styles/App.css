@@ -2,6 +2,11 @@
   animation: slide-left 0.8s ease-in both;
 }
 
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
+}
+
 @keyframes slide-left {
   0% {
     transform: translateX(0);

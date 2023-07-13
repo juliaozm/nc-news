@@ -13,12 +13,14 @@ export const SelectTopics = ({ topic, topicList, setTopic, setPage }) => {
     setPage(1);
   };
   return (
-    <SelectInput
-      name="selectedTopic"
-      value={selectedOption}
-      onChange={handleSelectTopic}
-      options={sortTopics}
-      selectLabel={"Topic"}
-    />
+    <div className="mr-3">
+      <SelectInput
+        name="selectedTopic"
+        value={selectedOption}
+        onChange={handleSelectTopic}
+        options={sortTopics}
+        selectLabel={"Topic"}
+      />
+    </div>
   );
 };

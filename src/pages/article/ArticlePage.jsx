@@ -35,7 +35,7 @@ export const ArticlePage = () => {
     return <ErrorPage />;
   } else {
     return (
-      <main className="mx-auto mb-10 w-full px-4 lg:container md:px-8 xl:px-16 2xl:px-32">
+      <main className="mx-auto mb-10 w-full px-4 lg:container lg:px-8">
         <ButtonBackLink />
         <>
           {isLoading ? (
