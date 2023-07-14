@@ -55,6 +55,7 @@ export const UserLoginForm = ({
             placeholder={"Password"}
             setNewValue={setPassword}
             required={true}
+            autocomplete="off"
           />
           {password.length > 0 && (
             <div className="absolute right-0 sm:bottom-1/2">
@@ -71,6 +72,7 @@ export const UserLoginForm = ({
           </h3>
         )}
         <ButtonLink
+          type="submit"
           text={"Login"}
           svg={
             <FaSpinner

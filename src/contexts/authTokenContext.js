@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from "react";
 import { getRefreshToken } from "utils/api";
-import jwtDecode from "jwt-decode";
 
 export const AuthContext = createContext();
 
@@ -21,13 +20,6 @@ export const AuthTokensProvider = ({ children }) => {
       }
     }
   };
-
-  useEffect(() => {
-    if (accessToken) {
-      const decodedToken = jwtDecode(accessToken);
-      setAccessTokenExpiration(decodedToken.exp);
-    }
-  }, [accessToken, accessTokenExpiration]);
 
   return (
     <AuthContext.Provider

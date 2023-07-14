@@ -1,6 +1,7 @@
 import jwtDecode from "jwt-decode";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { loginUser } from "utils/api";
+import { AuthContext } from "contexts/authTokenContext";
 import { UserLoginForm } from "pages/auth/login/UserLoginForm";
 import { toast } from "react-toastify";
 
@@ -8,9 +9,8 @@ export const UserLoginWithEmailAndPassword = ({
   email,
   setUserChecked,
   setLoggedInUser,
-  setAccessToken,
-  setAccessTokenExpiration,
 }) => {
+  const { setAccessToken, setAccessTokenExpiration } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
   const [password, setPassword] = useState("");
 
@@ -19,8 +19,9 @@ export const UserLoginWithEmailAndPassword = ({
     try {
       setIsLoading(true);
       const tokens = await loginUser(email, password);
-      const decodedToken = jwtDecode(tokens.data.accessToken);
-      setAccessToken(() => tokens.data.accessToken);
+      const accessToken = tokens.data.accessToken;
+      setAccessToken(accessToken);
+      const decodedToken = jwtDecode(accessToken);
       setAccessTokenExpiration(() => decodedToken.exp);
       setLoggedInUser(() => ({
         username: decodedToken.username,
@@ -35,6 +36,7 @@ export const UserLoginWithEmailAndPassword = ({
       });
     }
   };
+
   return (
     <UserLoginForm
       email={email}

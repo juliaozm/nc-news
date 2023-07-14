@@ -20,10 +20,10 @@ export const UserCreateForm = ({
   const [isPasswordShown, setPasswordShown] = useState(false);
 
   useEffect(() => {
-    const usernamePattern = /^(?![_])([a-z0-9_]{8,})$/;
+    const usernamePattern = /^(?![_])([a-z0-9_]{8,12})$/;
     !usernamePattern.test(username)
       ? setUsernameError(
-          "At least 8 characters — only lowercase letters, numbers, and can't begin with an underscore"
+          "From 8 to 12 characters — only lowercase letters, numbers, and can't begin with an underscore"
         )
       : setUsernameError("");
   }, [username]);
@@ -67,7 +67,9 @@ export const UserCreateForm = ({
           placeholder={"Username"}
           setNewValue={setUsername}
           required={true}
-          autoComplete={"on"}
+          autoComplete="on"
+          minLength={8}
+          maxLength={12}
         />
         {usernameError && username.length > 0 && (
           <h3 className="mb-4 px-3 text-left text-sm text-red-600">
@@ -82,6 +84,7 @@ export const UserCreateForm = ({
             placeholder={"Password"}
             setNewValue={setPassword}
             required={true}
+            autoComplete="new-password"
           />
           {password.length > 0 && (
             <div className="absolute right-0 sm:bottom-1/2">
@@ -98,6 +101,7 @@ export const UserCreateForm = ({
           </h3>
         )}
         <ButtonLink
+          type="submit"
           text={"Create Account"}
           svg={
             <FaSpinner

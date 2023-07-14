@@ -17,6 +17,7 @@ export const UserCheckForm = ({ setUserChecked, setEmail, email }) => {
   }, [email]);
 
   const handleUserCheck = async (e) => {
+    setUserChecked("none");
     e.preventDefault();
     setIsLoading(true);
     try {
@@ -24,7 +25,6 @@ export const UserCheckForm = ({ setUserChecked, setEmail, email }) => {
       setUserChecked("login");
       setIsLoading(false);
     } catch (err) {
-      console.log(err);
       if (err.response.status === 400) {
         setIsError(err.response.data.message);
       }
@@ -46,12 +46,12 @@ export const UserCheckForm = ({ setUserChecked, setEmail, email }) => {
         placeholder={"Your e-mail"}
         setNewValue={setEmail}
         required={true}
-        autoComplete={"on"}
       />
       {isError && email.length > 0 && (
         <h3 className="mb-4 px-3 text-left text-sm text-red-600">{isError}</h3>
       )}
       <ButtonLink
+        type="submit"
         text={"Continue"}
         svg={
           <FaSpinner

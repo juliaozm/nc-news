@@ -1,6 +1,7 @@
 import jwtDecode from "jwt-decode";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { postNewUser } from "utils/api";
+import { AuthContext } from "contexts/authTokenContext";
 import { UserCreateForm } from "pages/auth/register/UserCreateForm";
 import { toast } from "react-toastify";
 
@@ -8,9 +9,8 @@ export const UserCreateWithEmailAndPassword = ({
   email,
   setUserChecked,
   setLoggedInUser,
-  setAccessToken,
-  setAccessTokenExpiration,
 }) => {
+  const { setAccessToken, setAccessTokenExpiration } = useContext(AuthContext);
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [isLoading, setIsLoading] = useState(false);
