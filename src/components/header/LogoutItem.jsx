@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { TbLogout } from "react-icons/tb";
+import { IoIosLogOut } from "react-icons/io";
 import { deleteRefreshToken } from "utils/api";
 import { AuthContext } from "contexts/authTokenContext";
 import { getAuth, signOut } from "firebase/auth";
@@ -11,10 +11,7 @@ export const LogoutItem = ({ user, setLoggedInUser }) => {
   const { accessToken } = useContext(AuthContext);
 
   const handleLogout = () => {
-    setTimeout(() => {
-      setLoggedInUser({});
-    }, 800);
-
+    setLoggedInUser(() => ({}));
     if (user.firebase) {
       signOut(auth)
         .then(() => {
@@ -34,10 +31,10 @@ export const LogoutItem = ({ user, setLoggedInUser }) => {
     }
   };
   return (
-    <div className="ml-3 mr-3 flex justify-center">
+    <div className="ml-3 flex justify-center">
       <button onClick={handleLogout}>
-        <TbLogout
-          size={18}
+        <IoIosLogOut
+          size={20}
           className="text-neutral-500 transition-all hover:text-green-600 active:text-green-500"
         />
       </button>
